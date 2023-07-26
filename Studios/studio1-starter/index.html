@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Yet Another To-Do List</title>
+<script src="index.js" type="module"></script>
+</head>
+<body>
+	<div id="app">
+        <ma-data v-model="tasks" src="local:tasks"></ma-data>
+        <h1>{{calculateDone()}} done of {{tasks.length}} total</h1>
+        <ul>
+            <li v-for="(task, index) in tasks" :key="index">
+                <input type="checkbox" v-model="task.done">
+                <input @keyup.enter="addItem" placeholder="Please write a task" v-model="task.title" v-focus>
+                <button @click="deleteItem(index)">X</button>
+            </li>
+        </ul>
+        <button @click="addItem">Add Item</button>
+        <button @click="clearCompleted">Clear Completed</button>
+	</div>
+</body>
+</html>
